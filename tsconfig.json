@@ -13,8 +13,13 @@
       "types": ["vuetify"],
       "target": "es6",
       "module": "es6",
-      "strict": true
+      "strict": true,
+      "lib": [
+          "es6",
+          "dom"
+      ],
+      "strictPropertyInitialization": false
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["src/**/*spec.ts", "node_modules"]
+  "include": ["src/**/*.ts", "node_modules/nodecg/types/browser.d.ts"],
+  "exclude": ["src/**/*spec.ts"]
 }
