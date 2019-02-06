@@ -1,5 +1,6 @@
-import { Vue, Component, Prop, Watch } from 'vue-property-decorator';
-import {NodeCGBrowser} from 'nodecg/types/lib/nodecg-instance';
+import Vue from 'vue';
+import { Component, Prop, Watch} from 'vue-property-decorator'
+import { NodeCGBrowser } from 'nodecg/types/lib/nodecg-instance';
 import { ReplicantBrowser } from 'nodecg/types/browser';
 
 declare global {
@@ -8,8 +9,8 @@ declare global {
 
 @Component
 export default class NCGVueReplicant extends Vue {
-	@Prop(String) replicantName!: string
-	@Prop({default: typeof window.nodecg === 'object' ? window.nodecg.bundleName : null, type: String}) replicantBundle!: string
+	@Prop(String) replicantName: string
+	@Prop({type: String, default: typeof window.nodecg === 'object' ? window.nodecg.bundleName : null}) replicantBundle: string
 
 	replicant : ReplicantBrowser<any>;
 	
@@ -26,8 +27,6 @@ export default class NCGVueReplicant extends Vue {
 		this.replicant.on('change', this.replicantChangeHandler);
 	}
 	
-	@Watch('replicantName')
-	@Watch('replicantBundle')
 	retargetReplicant(name = this.replicantName, bundle = this.replicantBundle): void {
 		if (!name || !bundle) {
 			return;
@@ -43,5 +42,15 @@ export default class NCGVueReplicant extends Vue {
 
 	replicantChangeHandler(): void {
 
+	}
+
+	@Watch('replicantName')
+	replicantNameChanged(newVal: string) {
+		this.retargetReplicant(newVal);
+	}
+
+	@Watch('replicantBundle')
+	replicantBundleChanged(newVal: string) {
+		this.retargetReplicant(this.replicantName, newVal);
 	}
 }
