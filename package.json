@@ -1,6 +1,14 @@
 {
   "name": "nodecg-vue",
   "version": "0.1.1",
+  "author": {
+    "name": "Daniel Shields",
+    "email": "d@shieldsuk.me"
+  },
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/Dan-Shields/nodecg-vue.git"
+  },
   "scripts": {
     "build": "tsc"
   },
