@@ -4,7 +4,3 @@
 ```
 npm install
 ```
-### Compiles source
-```
-npm run build
-```
