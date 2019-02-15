@@ -1,18 +1,20 @@
 import { VTextField } from "vuetify/lib";
-import ReplicantComponent from "./Replicant"
+import ReplicantTargeting from "./ReplicantTargeting"
 
 export default VTextField.$_wrapperFor.extend({
-  name: "ncg-vue-text",
-  extends: VTextField,
-  mixins: [ReplicantComponent],
+  name: "nodecg-text",
+  mixins: [ReplicantTargeting],
   methods: {
-    replicantChangeHandler(val) {
-      this.value = val;
+    replicantValueChanged(val) {
+      this.lazyValue = val;
     }
   },
   created() {
-    this.$on('change', val => {
-      this.replicant.value = val
+    this.$on('input', val => {
+      if (typeof this.replicant !== 'object') {
+				return;
+			}
+      this.replicant.value = val;
     });
   }
 });

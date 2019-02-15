@@ -1,9 +1,20 @@
 import Vue from 'vue';
 
 export default Vue.extend({
+    data: function() {
+        return {
+            replicant: null
+        }
+    },
     props: {
         replicantName: String,
-        replicantBundle: { type: String, default: typeof window.nodecg === 'object' ? window.nodecg.bundleName : null }
+        replicantBundle: { type: String, default: typeof window.nodecg === 'object' ? window.nodecg.bundleName : null },
+        replicantOpts: Object
+    },
+    mounted() {
+        if (!this.replicant && this.replicantName && this.replicantBundle) {
+            this.declareReplicant(this.replicantName, this.replicantBundle);
+        }
     },
     methods: {
         declareReplicant(name, bundle) {
@@ -14,7 +25,9 @@ export default Vue.extend({
                 schemaPath: `bundles/${encodeURIComponent(bundle)}/schemas/${encodeURIComponent(name)}.json`
             };
             this.replicant = nodecg.Replicant(name, bundle, opts);
-            this.replicant.on('change', this.replicantChangeHandler);
+            this.replicant.on('change', this._replicantChangeHandler);
+
+            this.$emit('retarget', {name, bundle});
         },
         retargetReplicant(name = this.replicantName, bundle = this.replicantBundle) {
             if (!name || !bundle) {
@@ -22,11 +35,14 @@ export default Vue.extend({
             }
             // If there is an existing replicant, remove the event listener
             if (this.replicant) {
-                this.replicant.removeListener('change', this.replicantChangeHandler);
+                this.replicant.removeListener('change', this._replicantChangeHandler);
             }
             this.declareReplicant(name, bundle);
         },
-        replicantChangeHandler() {
+        _replicantChangeHandler(...args) {
+            if (typeof this.replicantValueChanged === 'function') {
+				this.replicantValueChanged(...args);
+			}
         }
     },
     watch: {
@@ -35,6 +51,6 @@ export default Vue.extend({
         },
         replicantBundle: newVal=> {
             this.retargetReplicant(this.replicantName, newVal);
-        }
+        }        
     }
 });
