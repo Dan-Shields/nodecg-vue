@@ -5,6 +5,7 @@
     "name": "Daniel Shields",
     "email": "d@shieldsuk.me"
   },
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/Dan-Shields/nodecg-vue.git"
@@ -17,8 +18,7 @@
     "@vue/eslint-config-prettier": "^4.0.1",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.8.0",
-    "eslint-plugin-vue": "^5.0.0",
-    "nodecg": "^1.3.1"
+    "eslint-plugin-vue": "^5.0.0"
   },
   "dependencies": {
     "vue": "^2.5.22",
