@@ -11,10 +11,9 @@ export default VTextField.$_wrapperFor.extend({
   },
   created() {
     this.$on('input', val => {
-      if (typeof this.replicant !== 'object') {
-				return;
+      if (typeof this.replicant === 'object') {
+        this.replicant.value = val;
 			}
-      this.replicant.value = val;
     });
   }
 });

@@ -1,10 +1,12 @@
-import NodeCGVueText from "./components/NCGVueText";
+import NCGVueText from "./components/NCGVueText";
+import NCGVueToggle from "./components/NCGVueToggle";
 
 const NodeCGVue = {
   install(Vue) {
-    Vue.component("nodecg-text", NodeCGVueText);
+    Vue.component("nodecg-text", NCGVueText);
+    Vue.component("nodecg-toggle", NCGVueToggle);
   },
-  version: "0.4.0"
+  version: "0.5.0"
 };
 
 export default NodeCGVue;
