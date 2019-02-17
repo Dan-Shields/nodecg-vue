@@ -14,5 +14,15 @@ Using [Vuetify](https://vuetifyjs.com) components as a base, this project is des
 | nodecg-menu                                                                                         | [v-menu](https://vuetifyjs.com/en/components/menus)               | [![Planned](https://img.shields.io/badge/status-planned-lightgrey.svg)](#)            |
 | nodecg-time-picker                                                                                  | [v-time-picker](https://vuetifyjs.com/en/components/time-pickers) | [![Planned](https://img.shields.io/badge/status-planned-lightgrey.svg)](#)            |
 
+## Usage
+Examples and description for the components can be found in each component's README. Click the name of an element above to go there. 
+
+As each component is just an extended Vuetify component, all the props, slots and events that you would expect are available.
+
+Every component has at least the following props added to interface with the replicant:
+- *String*: **replicantName** - The name of the target replicant. ***Required***
+- *String*: **replicantBundle** - The bundle namespace of the target replicant. If a NodeCG API context is available (`window.nodecg`), this defaults to the current bundle (`window.nodecg.bundleName`).
+- *Object*: **replicantOpts** - The desired options to be passed to the Replicant upon declaration. See [the NodeCG docs](https://nodecg.com/NodeCG.html#Replicant) for more info on this. Defaults to an empty object. ***Cannot changed after component is mounted.***
+
 ## Contributing
 The most needed thing at this stage is testing and feedback. If you encounter any bugs or have a feature request, an issue or PR would be much appreciated.
