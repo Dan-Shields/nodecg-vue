@@ -10,15 +10,28 @@ export default VBtn.extend({
     }
   },
   props: {
-    colors: {type: Object, default: () => {
-        return {unchecked: 'green', checked: 'red'}
+    toggleData: {type: Object, default: () => {
+        return {
+          color: {unchecked: 'green', checked: 'red'},
+          text: {unchecked: 'on', checked: 'off'}
+        }
       }
     }
   },
   methods: {
     replicantValueChanged(val) {
       this.checked = val;
-      this.checked = Boolean(val);
+    },
+    genContent() {
+      if (typeof this.checked !== "boolean") return;
+
+      const content = this.checked ? this.toggleData.text.checked : this.toggleData.text.unchecked;
+
+      return this.$createElement(
+        'div',
+        { 'class': 'v-btn__content' },
+        content
+      );
     }
   },
   created() {
@@ -33,13 +46,14 @@ export default VBtn.extend({
 			}
     });
   },
+  
   render(h) {
     const setColor = (!this.outline && !this.flat && !this.disabled) ? this.setBackgroundColor : this.setTextColor;
     const { tag, data } = this.generateRouteLink(this.classes);
 
     // Content if replicant declared, loader if not
     const children = [
-      this.genContent(),
+      typeof this.checked === "boolean" && this.genContent(),
       typeof this.checked !== "boolean" && this.genLoader()
     ];
 
@@ -49,8 +63,8 @@ export default VBtn.extend({
       ? this.value
       : JSON.stringify(this.value);
       
-    const color = this.checked !== null
-      ? (this.checked ? this.colors.checked : this.colors.unchecked)
+    const color = typeof this.checked === "boolean"
+      ? (this.checked ? this.toggleData.color.checked : this.toggleData.color.unchecked)
       : 'grey';
 
     return h(tag, setColor(color, data), children);
