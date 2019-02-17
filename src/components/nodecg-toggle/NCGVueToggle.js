@@ -1,5 +1,5 @@
 import { VBtn } from "vuetify/lib";
-import ReplicantTargeting from "./ReplicantTargeting"
+import ReplicantTargeting from "../../mixins/Replicant"
 
 export default VBtn.extend({
   name: "nodecg-toggle",

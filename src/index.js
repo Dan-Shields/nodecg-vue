@@ -1,5 +1,5 @@
-import NCGVueText from "./components/NCGVueText";
-import NCGVueToggle from "./components/NCGVueToggle";
+import NCGVueText from "./components/nodecg-text/NCGVueText";
+import NCGVueToggle from "./components/nodecg-toggle/NCGVueToggle";
 
 const NodeCGVue = {
   install(Vue) {

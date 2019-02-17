@@ -1,5 +1,5 @@
 import { VTextField } from "vuetify/lib";
-import ReplicantTargeting from "./ReplicantTargeting"
+import ReplicantTargeting from "../../mixins/Replicant"
 
 export default VTextField.$_wrapperFor.extend({
   name: "nodecg-text",
