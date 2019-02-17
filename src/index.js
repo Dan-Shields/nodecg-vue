@@ -6,7 +6,7 @@ const NodeCGVue = {
     Vue.component("nodecg-text", NCGVueText);
     Vue.component("nodecg-toggle", NCGVueToggle);
   },
-  version: "0.5.0"
+  version: "0.5.1"
 };
 
 export default NodeCGVue;
