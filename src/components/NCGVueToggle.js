@@ -17,13 +17,14 @@ export default VBtn.extend({
   },
   methods: {
     replicantValueChanged(val) {
-      console.log('new replicant value: ' + val);
+      this.checked = val;
       this.checked = Boolean(val);
     }
   },
   created() {
     this.$on('click', () => {
-      console.log('got click')
+      // Don't guess an initial value when replicant isn't bool. Wait for it to be initialised elsewhere.
+      if (typeof this.checked !== "boolean") return;
 
       this.checked = !this.checked || false;
 
@@ -35,9 +36,11 @@ export default VBtn.extend({
   render(h) {
     const setColor = (!this.outline && !this.flat && !this.disabled) ? this.setBackgroundColor : this.setTextColor;
     const { tag, data } = this.generateRouteLink(this.classes);
+
+    // Content if replicant declared, loader if not
     const children = [
       this.genContent(),
-      this.loading && this.genLoader()
+      typeof this.checked !== "boolean" && this.genLoader()
     ];
 
     if (tag === 'button') data.attrs.type = this.type;
