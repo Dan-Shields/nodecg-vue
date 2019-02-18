@@ -14,6 +14,26 @@ Using [Vuetify](https://vuetifyjs.com) components as a base, this project is des
 | nodecg-menu                                                                                         | [v-menu](https://vuetifyjs.com/en/components/menus)               | [![Planned](https://img.shields.io/badge/status-planned-lightgrey.svg)](#)            |
 | nodecg-time-picker                                                                                  | [v-time-picker](https://vuetifyjs.com/en/components/time-pickers) | [![Planned](https://img.shields.io/badge/status-planned-lightgrey.svg)](#)            |
 
+## Install
+1. `npm install nodecg-vue`
+2. Setup your base component:
+```javascript
+import Vue from 'vue';
+import Vuetify from 'vuetify';
+import NodeCGVue from 'nodecg-vue';
+
+import 'vuetify/dist/vuetify.min.css';
+
+Vue.use(Vuetify);
+Vue.use(NodeCGVue);
+
+import MyComponent from './MyComponent.vue';
+
+new Vue({
+	render: h => h(MyComponent)
+}).$mount('#app');
+```
+
 ## Usage
 Examples and description for the components can be found in each component's README. Click the name of an element above to go there. 
 
