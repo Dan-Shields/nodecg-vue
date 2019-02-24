@@ -38,7 +38,7 @@ If the replicant chosen is empty, or not boolean, and if no default value was sp
 All props from the base component [VBtn](https://vuetifyjs.com/en/components/buttons) are carried over, and the following properties are added:
 - *String*: **replicantName** - The name of the target replicant. ***Required***
 - *String*: **replicantBundle** - The bundle namespace of the target replicant. If a NodeCG API context is available (`window.nodecg`), this defaults to the current bundle (`window.nodecg.bundleName`).
-- *Object*: **replicantOpts** - The desired options to be passed to the Replicant upon declaration. See [the NodeCG docs](https://nodecg.com/NodeCG.html#Replicant) for more info on this. Defaults to an empty object. ***Cannot changed after component is mounted.***
+- *Object*: **replicantOpts** - The desired options to be passed to the Replicant upon declaration. See [the NodeCG docs](https://nodecg.com/NodeCG.html#Replicant) for more info on this. Defaults to an empty object. ***Cannot be changed after component is mounted.***
 - *Object*: **toggleData** - Allows user to easily set text and colour of the button to change dependent on the replicant value. Contains 2 objects "color" and "text" which contain a "unchecked" and an "checked" value each. Color can be [a Vuetify color class](https://vuetifyjs.com/en/framework/colors#material-colors) or a normal CSS color (hex/hsl). Defaults to ```{
     color: {unchecked: 'green', checked: 'red'},
     text: {unchecked: 'on', checked: 'off'}
